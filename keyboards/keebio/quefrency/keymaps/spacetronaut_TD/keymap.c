@@ -8,17 +8,17 @@ extern keymap_config_t keymap_config;
 // entirely and just use numbers.
 #define _BASE 0
 #define _FN1 1
-#define _EMOJ 2
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   ___PASS,
-  ____VSC,
   _WINTAB = LGUI(KC_TAB),
   ___LOCK,
-  _LAYOUT,
-  TD_WTAB,
   NEWTERM,
+};
+
+enum tap_dances {
+  TD_WTAB
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -35,7 +35,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case ___LOCK:
       if (record->event.pressed) {
         // when keycode ___LOCK is pressed
-        SEND_STRING(SS_DOWN(X_LGUI) "l" SS_UP(X_LGUI));
+        SEND_STRING(SS_LGUI("l"));
     }
       else {
         //when released
